@@ -1,0 +1,136 @@
+/* ===== apps.css : shared styles for Weather + Todo pages ===== */
+:root {
+  --bg: #f3f7f6;
+  --surface: #ffffff;
+  --text: #16302d;
+  --muted: #5d726f;
+  --accent: #0f766e;
+  --accent-text: #ffffff;
+  --border: #d7e2e0;
+  --danger: #b42318;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1b1a;
+    --surface: #152826;
+    --text: #e6f1ef;
+    --muted: #9bb3af;
+    --accent: #2dd4bf;
+    --accent-text: #06201d;
+    --border: #27403d;
+    --danger: #f97066;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ----- Header / nav ----- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.site-header__brand { font-weight: 700; font-size: 1.1rem; }
+.site-nav { display: flex; gap: 1rem; }
+.site-nav__link { color: var(--muted); text-decoration: none; padding: 0.25rem 0; }
+.site-nav__link:hover { color: var(--text); }
+.site-nav__link--active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+
+/* ----- Page layout ----- */
+.page { max-width: 520px; margin: 2rem auto; padding: 0 1rem; }
+.page__title { margin: 0 0 0.25rem; font-size: 1.75rem; }
+.page__intro { margin: 0 0 1.5rem; color: var(--muted); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+/* ----- Form controls ----- */
+.form-row { display: flex; gap: 0.5rem; }
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.85rem;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.btn {
+  padding: 0.7rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn--ghost {
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  font-weight: 500;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.9rem;
+}
+.btn--danger { color: var(--danger); }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.status { min-height: 1.5rem; margin: 0.75rem 0 0; color: var(--muted); }
+.status--error { color: var(--danger); font-weight: 600; }
+
+/* ----- Weather ----- */
+.weather { margin-top: 1rem; text-align: center; }
+.weather__city { margin: 0; font-size: 1.5rem; }
+.weather__main { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.weather__icon { width: 90px; height: 90px; }
+.weather__temp { font-size: 3.25rem; font-weight: 700; }
+.weather__desc { margin: 0 0 1rem; color: var(--muted); text-transform: capitalize; }
+.weather__stats { display: flex; justify-content: space-around; margin: 0; padding-top: 1rem; border-top: 1px solid var(--border); }
+.weather__stat dt { color: var(--muted); font-size: 0.85rem; }
+.weather__stat dd { margin: 0; font-size: 1.15rem; font-weight: 600; }
+
+/* ----- Todo ----- */
+.filters { display: flex; gap: 0.5rem; margin: 1rem 0; }
+.filters .btn--ghost[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+.todo__list { list-style: none; margin: 0; padding: 0; }
+.todo__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.todo__check { width: 1.15rem; height: 1.15rem; accent-color: var(--accent); }
+.todo__text { flex: 1; overflow-wrap: anywhere; }
+.todo__item--done .todo__text { text-decoration: line-through; color: var(--muted); }
+.todo__edit { flex: 1; }
+.todo__empty { color: var(--muted); text-align: center; margin: 1rem 0; }
+.todo__footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; color: var(--muted); }
+
+@media (max-width: 420px) {
+  .form-row { flex-direction: column; }
+  .weather__temp { font-size: 2.5rem; }
+}
